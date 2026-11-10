@@ -1,0 +1,16 @@
+spring:
+ application:
+  name: API-GATEWAY
+ cloud:
+  gateway:
+    server:
+      webflux:
+        routes:
+          - id: account-service
+            uri: lb://ACCOUNT-SERVICE
+            predicates:
+              - Path=/accounts/**
+          - id: wallet-service
+            uri: lb://WALLET-SERVICE
+            predicates:
+              - Path=/wallets/*
